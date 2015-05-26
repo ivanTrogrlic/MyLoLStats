@@ -3,7 +3,6 @@ package com.example.ivan.mylolstatistics;
 import android.app.Fragment;
 import android.content.res.Configuration;
 import android.os.Bundle;
-import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,8 +10,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.ivan.animation.TextAnimation;
-import com.example.ivan.canvas.CustomGauge;
-import com.example.ivan.canvas.CustomGaugeLandscape;
+import com.example.ivan.animation.CustomGauge;
+import com.example.ivan.animation.CustomGaugeLandscape;
 import com.example.ivan.database.DatabaseStuff;
 
 import java.text.NumberFormat;
