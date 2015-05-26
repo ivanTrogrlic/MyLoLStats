@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/search_kda"
+        android:layout_gravity="center_horizontal"
+        android:textSize="20sp"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/etEnterChampionName"
+        android:layout_gravity="center_horizontal"
+        android:inputType="text"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/check_kda"
+        android:id="@+id/bCheckChampionKda"
+        android:layout_gravity="center_horizontal" />
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:paddingTop="10dp"
+        android:paddingLeft="30dp"
+        android:paddingRight="30dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tvChampionKda"
+            android:gravity="center"
+            android:textSize="40sp"
+            android:layout_marginTop="20dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tvKdaResultQuote"
+            android:gravity="center"
+            android:textSize="20sp"
+            android:layout_marginBottom="10dp"/>
+
+        <View
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:background="@drawable/border_bottom"
+            android:id="@+id/line"
+            android:visibility="invisible"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tvChampionWinRate"
+            android:gravity="center"
+            android:textSize="40sp"
+            android:layout_marginTop="10dp"/>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:id="@+id/procentHolder"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/win_percent_corners"
+            android:visibility="invisible">
+
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:id="@+id/vProcent"
+                android:background="@drawable/win_percent_corners_view"
+                android:visibility="invisible"
+                />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>
