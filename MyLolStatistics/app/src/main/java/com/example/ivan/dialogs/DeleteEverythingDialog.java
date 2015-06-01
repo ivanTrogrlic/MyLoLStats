@@ -6,7 +6,6 @@ import android.app.DialogFragment;
 import android.app.FragmentTransaction;
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.widget.FrameLayout;
 import android.widget.Toast;
 
 import com.example.ivan.database.DatabaseStuff;

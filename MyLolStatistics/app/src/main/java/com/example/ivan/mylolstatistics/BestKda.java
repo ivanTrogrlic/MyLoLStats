@@ -35,13 +35,13 @@ import java.util.Map;
 public class BestKda extends Fragment {
 
     TextView maxKda, maxKdaChampion;
-    private SpeedometerGauge speedometer;
-
     MediaPlayer mediaPlayer;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        SpeedometerGauge speedometer;
 
         final DatabaseStuff db = new DatabaseStuff(getActivity());
 
@@ -80,11 +80,12 @@ public class BestKda extends Fragment {
         speedometer.addColoredRange(2, 5, Color.GREEN);
         speedometer.addColoredRange(5, 8, Color.YELLOW);
         speedometer.addColoredRange(8, 20, Color.RED);
-        speedometer.setSpeed(maxEntry.getValue(), 1000, 300);
-
-        if(maxEntry.getValue() >=20){
-            mediaPlayer = MediaPlayer.create(v.getContext(), R.raw.bell);
-            mediaPlayer.start();
+        if(maxEntry != null) {
+            speedometer.setSpeed(maxEntry.getValue(), 1000, 300);
+            if(maxEntry.getValue() >= 20){
+                mediaPlayer = MediaPlayer.create(v.getContext(), R.raw.bell);
+                mediaPlayer.start();
+            }
         }
 
         return v;

@@ -6,11 +6,14 @@
     android:orientation="horizontal">
 
     <ImageView
+        android:contentDescription="@null"
         android:id="@+id/icon"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_marginLeft="4dp"
+        android:layout_marginStart="4dp"
         android:layout_marginRight="10dp"
+        android:layout_marginEnd="10dp"
         android:layout_gravity="center"
         android:src="@drawable/ic_action_new" >
     </ImageView>
@@ -20,10 +23,12 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_marginLeft="4dp"
+        android:layout_marginStart="4dp"
         android:layout_marginRight="10dp"
-        android:gravity="center|left"
+        android:layout_marginEnd="10dp"
+        android:gravity="center|start"
         android:text="@+id/label"
-        android:textSize="20dp" >
+        android:textSize="20sp" >
     </TextView>
 
 </LinearLayout> 

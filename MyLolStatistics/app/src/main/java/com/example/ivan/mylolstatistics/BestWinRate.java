@@ -33,6 +33,10 @@ public class BestWinRate extends Fragment {
         tvBestWinRate = (TextView) v.findViewById(R.id.tvBestWinRateChamp);
         TextAnimation textAnimation = new TextAnimation(tvBestWinRate);
 
+        final NumberFormat formatter = NumberFormat.getNumberInstance();
+        formatter.setMinimumFractionDigits(0);
+        formatter.setMaximumFractionDigits(2);
+
         Map<String, Double> map = db.bestWinRate();
         Double maxEntry = null;
         String bestWinRateChamp = "";
@@ -46,22 +50,19 @@ public class BestWinRate extends Fragment {
             }
         }
 
-        final double bestWinRate= maxEntry;
         final String finalBestWinRateChamp = bestWinRateChamp;
-        final Double finalMaxEntry = maxEntry;
+        final Double bestWinRate = maxEntry;
 
         textAnimation.setCharacterDelay(200);
         textAnimation.animateText(finalBestWinRateChamp);
-
-        final NumberFormat formatter = NumberFormat.getNumberInstance();
-        formatter.setMinimumFractionDigits(0);
-        formatter.setMaximumFractionDigits(2);
 
         int orientation=this.getResources().getConfiguration().orientation;
         if(orientation == Configuration.ORIENTATION_PORTRAIT){
             final CustomGauge gauge = new CustomGauge(getActivity());
             final RelativeLayout relativeLayout = (RelativeLayout) v.findViewById(R.id.rect);
             relativeLayout.addView(gauge);
+
+            if(bestWinRate != null){
             new Thread() {
                 public void run() {
                     for (i=1;i< bestWinRate+1;i++) {
@@ -80,16 +81,18 @@ public class BestWinRate extends Fragment {
                     getActivity().runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            tvBestWinRate.append("\n" + formatter.format(finalMaxEntry) + "%");
+                            tvBestWinRate.append("\n" + formatter.format(bestWinRate) + "%");
                         }
                     });
                 }
             }.start();
-        }
+        }}
         else{
             final CustomGaugeLandscape gauge = new CustomGaugeLandscape(getActivity());
             final RelativeLayout relativeLayout = (RelativeLayout) v.findViewById(R.id.rect);
             relativeLayout.addView(gauge);
+
+            if(bestWinRate != null){
             new Thread() {
                 public void run() {
                     for (i=1;i< bestWinRate+1;i++) {
@@ -108,12 +111,12 @@ public class BestWinRate extends Fragment {
                     getActivity().runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            tvBestWinRate.append("\n" + formatter.format(finalMaxEntry) + "%");
+                            tvBestWinRate.append("\n" + formatter.format(bestWinRate) + "%");
                         }
                     });
                 }
             }.start();
-        }
+        }}
 
         return v;
     }
