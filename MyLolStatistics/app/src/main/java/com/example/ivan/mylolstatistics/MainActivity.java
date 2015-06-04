@@ -1,11 +1,12 @@
 package com.example.ivan.mylolstatistics;
 
+import android.app.Fragment;
 import android.app.FragmentTransaction;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.FrameLayout;
 import android.widget.Toast;
 
 import com.example.ivan.dialogs.DeleteEverythingDialog;
@@ -18,7 +19,9 @@ public class MainActivity extends FragmentActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.listofoptions);
 
-        if (findViewById(R.id.fragment_container) != null) {
+        int orientation = getResources().getConfiguration().orientation;
+
+        if (orientation == Configuration.ORIENTATION_PORTRAIT) {
 
             if (savedInstanceState != null) {
                 return;
@@ -30,122 +33,81 @@ public class MainActivity extends FragmentActivity
         }
     }
 
-    public void onSelectedJobSelected(int position) {
+    public void onSelectedJobSelected(int position) throws InstantiationException, IllegalAccessException {
 
-        FrameLayout f = (FrameLayout) findViewById(R.id.selected_option_fragment);
+        //FrameLayout f = (FrameLayout) findViewById(R.id.selected_option_fragment);
+        int orientation = getResources().getConfiguration().orientation;
 
-        if (f != null) {
+        if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
 
-            if(position == 0){
-
-                AddNewGame newFragment = new AddNewGame();
-                Bundle args = new Bundle();
-                newFragment.setArguments(args);
-                FragmentTransaction transaction = getFragmentManager().beginTransaction();
-
-                transaction.replace(R.id.selected_option_fragment, newFragment);
-                transaction.addToBackStack(AddNewGame.class.getName());
-                transaction.commit();
-
-            }
-            else if(position == 1){
-                DisplayStatistics newFragment = new DisplayStatistics();
-                Bundle args = new Bundle();
-                newFragment.setArguments(args);
-                FragmentTransaction transaction = getFragmentManager().beginTransaction();
-
-                transaction.replace(R.id.selected_option_fragment, newFragment);
-                transaction.addToBackStack(DisplayStatistics.class.getName());
-                transaction.commit();
-            }
-            else if(position == 2){
-                SearchByKda newFragment = new SearchByKda();
-                Bundle args = new Bundle();
-                newFragment.setArguments(args);
-                FragmentTransaction transaction = getFragmentManager().beginTransaction();
-
-                transaction.replace(R.id.selected_option_fragment, newFragment);
-                transaction.addToBackStack(SearchByKda.class.getName());
-                transaction.commit();
-            }
-            else if(position == 3){
-
-                BestKda newFragment = new BestKda();
-                Bundle args = new Bundle();
-                newFragment.setArguments(args);
-                FragmentTransaction transaction = getFragmentManager().beginTransaction();
-
-                transaction.replace(R.id.selected_option_fragment, newFragment);
-                transaction.addToBackStack(BestKda.class.getName());
-                transaction.commit();
-            }
-            else if(position == 4){
-
-                BestWinRate newFragment = new BestWinRate();
-                Bundle args = new Bundle();
-                newFragment.setArguments(args);
-                FragmentTransaction transaction = getFragmentManager().beginTransaction();
-
-                transaction.replace(R.id.selected_option_fragment, newFragment);
-                transaction.addToBackStack(BestWinRate.class.getName());
-                transaction.commit();
+            switch(position){
+                case 0:
+                    AddNewGame addNewGameFragment = new AddNewGame();
+                    fragmentTransactionLandscape(addNewGameFragment);
+                    break;
+                case 1:
+                    DisplayStatistics displayStatisticsFragment = new DisplayStatistics();
+                    fragmentTransactionLandscape(displayStatisticsFragment);
+                    break;
+                case 2:
+                    SearchByKda searchByKdaFragment = new SearchByKda();
+                    fragmentTransactionLandscape(searchByKdaFragment);
+                    break;
+                case 3:
+                    BestKda bestKdaFragment = new BestKda();
+                    fragmentTransactionLandscape(bestKdaFragment);
+                    break;
+                case 4:
+                    BestWinRate bestWinRateFragment = new BestWinRate();
+                    fragmentTransactionLandscape(bestWinRateFragment);
+                    break;
             }
 
-        } else if(position == 0){
+        }else{
 
-            AddNewGame newFragment = new AddNewGame();
-            Bundle args = new Bundle();
-            newFragment.setArguments(args);
-            FragmentTransaction transaction = getFragmentManager().beginTransaction();
-
-            transaction.replace(R.id.fragment_container, newFragment);
-            transaction.addToBackStack(AddNewGame.class.getName());
-            transaction.commit();
+            switch(position){
+                case 0:
+                    AddNewGame addNewGameFragment = new AddNewGame();
+                    fragmentTransactionPortrait(addNewGameFragment);
+                    break;
+                case 1:
+                    DisplayStatistics displayStatisticsFragment = new DisplayStatistics();
+                    fragmentTransactionPortrait(displayStatisticsFragment);
+                    break;
+                case 2:
+                    SearchByKda searchByKdaFragment = new SearchByKda();
+                    fragmentTransactionPortrait(searchByKdaFragment);
+                    break;
+                case 3:
+                    BestKda bestKdaFragment = new BestKda();
+                    fragmentTransactionPortrait(bestKdaFragment);
+                    break;
+                case 4:
+                    BestWinRate bestWinRateFragment = new BestWinRate();
+                    fragmentTransactionPortrait(bestWinRateFragment);
+                    break;
+            }
         }
-        else if(position == 1){
+    }
 
-            DisplayStatistics newFragment = new DisplayStatistics();
-            Bundle args = new Bundle();
-            newFragment.setArguments(args);
-            FragmentTransaction transaction = getFragmentManager().beginTransaction();
+    private void fragmentTransactionPortrait(Fragment newFragment) {
+        Bundle args = new Bundle();
+        newFragment.setArguments(args);
+        FragmentTransaction transaction = getFragmentManager().beginTransaction();
 
-            transaction.replace(R.id.fragment_container, newFragment);
-            transaction.addToBackStack(DisplayStatistics.class.getName());
-            transaction.commit();
-        }
-        else if(position == 2){
+        transaction.replace(R.id.fragment_container, newFragment);
+        transaction.addToBackStack(null);
+        transaction.commit();
+    }
 
-            SearchByKda newFragment = new SearchByKda();
-            Bundle args = new Bundle();
-            newFragment.setArguments(args);
-            FragmentTransaction transaction = getFragmentManager().beginTransaction();
+    private void fragmentTransactionLandscape(Fragment newFragment) throws IllegalAccessException, InstantiationException {
+        Bundle args = new Bundle();
+        newFragment.setArguments(args);
+        FragmentTransaction transaction = getFragmentManager().beginTransaction();
 
-            transaction.replace(R.id.fragment_container, newFragment);
-            transaction.addToBackStack(SearchByKda.class.getName());
-            transaction.commit();
-        }
-        else if(position == 3){
-
-            BestKda newFragment = new BestKda();
-            Bundle args = new Bundle();
-            newFragment.setArguments(args);
-            FragmentTransaction transaction = getFragmentManager().beginTransaction();
-
-            transaction.replace(R.id.fragment_container, newFragment);
-            transaction.addToBackStack(BestKda.class.getName());
-            transaction.commit();
-        }
-        else if(position == 4){
-
-            BestWinRate newFragment = new BestWinRate();
-            Bundle args = new Bundle();
-            newFragment.setArguments(args);
-            FragmentTransaction transaction = getFragmentManager().beginTransaction();
-
-            transaction.replace(R.id.fragment_container, newFragment);
-            transaction.addToBackStack(BestWinRate.class.getName());
-            transaction.commit();
-        }
+        transaction.replace(R.id.selected_option_fragment, newFragment);
+        transaction.addToBackStack(null);
+        transaction.commit();
     }
 
     @Override

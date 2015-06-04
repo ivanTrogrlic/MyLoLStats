@@ -11,7 +11,7 @@ public class ListOfOptionsFragment extends ListFragment {
     OnOptionSelected mCallback;
 
     public interface OnOptionSelected {
-        void onSelectedJobSelected(int position);
+        void onSelectedJobSelected(int position) throws java.lang.InstantiationException, IllegalAccessException;
     }
 
     @Override
@@ -49,7 +49,11 @@ public class ListOfOptionsFragment extends ListFragment {
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
 
-        mCallback.onSelectedJobSelected(position);
+        try {
+            mCallback.onSelectedJobSelected(position);
+        } catch (java.lang.InstantiationException|IllegalAccessException e) {
+            e.printStackTrace();
+        }
         getListView().setItemChecked(position, true);
 
     }

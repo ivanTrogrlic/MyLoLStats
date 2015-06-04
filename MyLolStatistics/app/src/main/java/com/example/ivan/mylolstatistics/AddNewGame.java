@@ -16,6 +16,7 @@
 package com.example.ivan.mylolstatistics;
 
 import android.app.Fragment;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -47,25 +48,55 @@ public class AddNewGame extends Fragment {
         assists = (EditText) v.findViewById(R.id.etAssists);
         gameOutcome = (Spinner) v.findViewById(R.id.spinnerGameOutcome);
         addNewGame = (Button) v.findViewById(R.id.bAddNewGame);
+        addNewGame.getBackground().setColorFilter(0xFF00FF01, PorterDuff.Mode.MULTIPLY);
 
         addNewGame.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
+               if(checkFields()) {
 
-               GameStatistics game = new GameStatistics(championPlayed.getText().toString(),
-                        gameOutcome.getSelectedItem().toString(),
-                        Integer.parseInt(kills.getText().toString()),
-                        Integer.parseInt(deaths.getText().toString()),
-                        Integer.parseInt(assists.getText().toString()));
+                   GameStatistics game = new GameStatistics(championPlayed.getText().toString(),
+                           gameOutcome.getSelectedItem().toString(),
+                           Integer.parseInt(kills.getText().toString()),
+                           Integer.parseInt(deaths.getText().toString()),
+                           Integer.parseInt(assists.getText().toString()));
 
-                db.addGame(game);
+                   db.addGame(game);
 
-                Toast.makeText(getActivity(), "Game added", Toast.LENGTH_SHORT).show();
+                   Toast.makeText(getActivity(), "Game added", Toast.LENGTH_SHORT).show();
+               }else{
+                   Toast.makeText(getActivity(), "You forgot to enter one or more things", Toast.LENGTH_SHORT).show();
+               }
             }
         });
 
         return v;
+    }
+
+    private boolean checkFields() {
+
+        boolean allRight = true;
+
+        if (championPlayed.getText().toString().length() == 0){
+            championPlayed.setError("No champion name entered!");
+            allRight = false;
+        }
+        if(kills.getText().toString().length() == 0){
+            kills.setError("No kills entered!");
+            allRight = false;
+        }
+        if(assists.getText().toString().length() == 0){
+            assists.setError("No assists entered!");
+            allRight = false;
+        }
+        if(deaths.getText().toString().length() == 0){
+            deaths.setError("No deaths entered!");
+            allRight = false;
+        }
+
+        return allRight;
+
     }
 
     @Override
@@ -76,4 +107,8 @@ public class AddNewGame extends Fragment {
         super.onSaveInstanceState(outState);
     }
 
+    @Override
+    public void onViewStateRestored(Bundle savedInstanceState) {
+        super.onViewStateRestored(savedInstanceState);
+    }
 }
