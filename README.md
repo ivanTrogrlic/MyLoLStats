@@ -8,6 +8,8 @@ Also, user can see every game they played in a table, where they can delete or u
 The app is built with fragments, one fragment is shown when device is in the portrait mode, and two are shown when its in the 
 landscape mode. 
 
+The app is not 100% finished yet, but the Core of it is pretty much done.
+
 ![ScreenShot](http://s7.postimg.org/p3fb85lrf/main_menu.png)
 
 ![ScreenShot](http://s16.postimg.org/5e7azv3hx/landscape_addgame.png)
