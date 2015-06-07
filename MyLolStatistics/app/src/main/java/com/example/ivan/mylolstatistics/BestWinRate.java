@@ -22,6 +22,7 @@ public class BestWinRate extends Fragment {
 
     int i;
     TextView tvBestWinRate;
+    Thread thread;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -63,29 +64,36 @@ public class BestWinRate extends Fragment {
             relativeLayout.addView(gauge);
 
             if(bestWinRate != null){
-            new Thread() {
-                public void run() {
-                    for (i=1;i< bestWinRate+1;i++) {
+                thread = new Thread(new Runnable() {
+                    @Override
+                        public void run() {
+                            for (i=1;i< bestWinRate+1;i++) {
+                                try {
+                                    getActivity().runOnUiThread(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            gauge.setValue(i*10);
+                                        }
+                                    });
+                                    Thread.sleep(50);
+                                } catch (InterruptedException e) {
+                                    e.printStackTrace();
+                                    break;
+                                }
+                            }
                         try {
                             getActivity().runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
-                                    gauge.setValue(i*10);
+                                    tvBestWinRate.append("\n" + formatter.format(bestWinRate) + "%");
                                 }
                             });
-                            Thread.sleep(50);
-                        } catch (InterruptedException e) {
+                        }catch (Exception e) {
                             e.printStackTrace();
                         }
                     }
-                    getActivity().runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            tvBestWinRate.append("\n" + formatter.format(bestWinRate) + "%");
-                        }
                     });
-                }
-            }.start();
+                thread.start();
         }}
         else{
             final CustomGaugeLandscape gauge = new CustomGaugeLandscape(getActivity());
@@ -93,29 +101,36 @@ public class BestWinRate extends Fragment {
             relativeLayout.addView(gauge);
 
             if(bestWinRate != null){
-            new Thread() {
-                public void run() {
-                    for (i=1;i< bestWinRate+1;i++) {
+                thread = new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        for (i=1;i< bestWinRate+1;i++) {
+                            try {
+                                getActivity().runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        gauge.setValue(i*10);
+                                    }
+                                });
+                                Thread.sleep(50);
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                                break;
+                            }
+                        }
                         try {
                             getActivity().runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
-                                    gauge.setValue(i*10);
+                                    tvBestWinRate.append("\n" + formatter.format(bestWinRate) + "%");
                                 }
                             });
-                            Thread.sleep(50);
-                        } catch (InterruptedException e) {
+                        }catch (Exception e) {
                             e.printStackTrace();
                         }
                     }
-                    getActivity().runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            tvBestWinRate.append("\n" + formatter.format(bestWinRate) + "%");
-                        }
-                    });
-                }
-            }.start();
+                });
+                thread.start();
         }}
 
         return v;
@@ -124,7 +139,24 @@ public class BestWinRate extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
+    }
 
+    @Override
+    public void onStop() {
+        super.onStop();
+        thread.interrupt();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        thread.interrupt();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        thread.interrupt();
     }
 
     @Override

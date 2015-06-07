@@ -63,44 +63,60 @@ public class SearchByKda extends Fragment {
             @Override
             public void onClick(View v) {
 
-                NumberFormat formatter = NumberFormat.getNumberInstance();
-                formatter.setMinimumFractionDigits(0);
-                formatter.setMaximumFractionDigits(2);
+                if(checkFields()) {
 
-                List<Double> kda = db.checkKda(champion.getText().toString());
-                Double total = 0.0;
-                Double count = 0.0;
-                for (Double k : kda) {
-                    total += k;
-                    count++;
-                }
-                total = total / count;
-                if (!total.isNaN()) {
-                    if (total <= 2) {
-                        championKda.setTextColor(Color.GRAY);
-                        kdaQuote.setText("Gotta practice some more with this guy my friend, " +
-                                "or play something else.");
-                    } else if (total > 2 && total <= 5) {
-                        championKda.setTextColor(Color.GREEN);
-                        kdaQuote.setText("Ok..Ok.. not good, not bad..");
-                    } else if (total > 5) {
-                        championKda.setTextColor(Color.BLUE);
-                        kdaQuote.setText("Nice KDA, youre good with this one :)");
+                    NumberFormat formatter = NumberFormat.getNumberInstance();
+                    formatter.setMinimumFractionDigits(0);
+                    formatter.setMaximumFractionDigits(2);
+
+                    List<Double> kda = db.checkKda(champion.getText().toString());
+                    Double total = 0.0;
+                    Double count = 0.0;
+                    for (Double k : kda) {
+                        total += k;
+                        count++;
                     }
-                    championKda.setText(formatter.format(total) + " KDA");
-                } else {
-                    championKda.setText("No such champion, or you just havent played it yet.");
+                    total = total / count;
+                    if (!total.isNaN()) {
+                        if (total <= 2) {
+                            championKda.setTextColor(Color.GRAY);
+                            kdaQuote.setText("Gotta practice some more with this guy my friend, " +
+                                    "or play something else.");
+                        } else if (total > 2 && total <= 5) {
+                            championKda.setTextColor(Color.GREEN);
+                            kdaQuote.setText("Ok..Ok.. not good, not bad..");
+                        } else if (total > 5) {
+                            championKda.setTextColor(Color.BLUE);
+                            kdaQuote.setText("Nice KDA, youre good with this one :)");
+                        }
+                        championKda.setText(formatter.format(total) + " KDA");
+                    } else {
+                        championKda.setText("No such champion, or you just havent played it yet.");
+                    }
+                    line.setVisibility(View.VISIBLE);
+                    procentHolder.setVisibility(View.VISIBLE);
+
+                    winRate = formatter.format(db.checkWinRate(champion.getText().toString()));
+
+                    scaleView(procent, 0, (float) db.checkWinRate(champion.getText().toString()) / 100);
+
                 }
-                line.setVisibility(View.VISIBLE);
-                procentHolder.setVisibility(View.VISIBLE);
-
-                winRate = formatter.format(db.checkWinRate(champion.getText().toString()));
-
-                scaleView(procent, 0, (float) db.checkWinRate(champion.getText().toString()) / 100);
-
             }});
 
         return v;
+    }
+
+    private boolean checkFields() {
+
+        boolean allRight = true;
+
+        if (champion.getText().toString().length() == 0){
+            champion.setError("No champion name entered!");
+            allRight = false;
+        }
+
+        return allRight;
+
     }
 
     public void scaleView(View v, float startScale, float endScale) {
