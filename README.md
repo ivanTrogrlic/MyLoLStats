@@ -9,6 +9,7 @@ The app is built with fragments, one fragment is shown when device is in the por
 landscape mode. 
 
 The app is not 100% finished yet, but the Core of it is pretty much done.
+I'll still be working on it, perhaps use ContentProvider to add suggestions when searching for specific champion data, and Loaders to display table with only the desired champions, not all the entries from the database.
 
 ![ScreenShot](http://s7.postimg.org/p3fb85lrf/main_menu.png)
 
