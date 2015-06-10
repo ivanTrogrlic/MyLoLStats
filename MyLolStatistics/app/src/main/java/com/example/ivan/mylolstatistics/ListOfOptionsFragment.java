@@ -51,7 +51,9 @@ public class ListOfOptionsFragment extends ListFragment {
 
         try {
             mCallback.onSelectedJobSelected(position);
-        } catch (java.lang.InstantiationException|IllegalAccessException e) {
+        } catch (java.lang.InstantiationException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
             e.printStackTrace();
         }
         getListView().setItemChecked(position, true);

@@ -14,7 +14,8 @@
         android:layout_marginLeft="4dp"
         android:layout_marginRight="10dp"
         android:layout_gravity="center"
-        android:src="@drawable/ic_action_new">
+        android:src="@drawable/ic_action_new"
+        android:background="@color/primary">
     </ImageView>
 
     <TextView

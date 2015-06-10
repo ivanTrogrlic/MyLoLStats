@@ -71,7 +71,8 @@
             android:layout_height="match_parent"
             android:text="@string/addGame"
             android:id="@+id/bAddNewGame"
-            android:layout_margin="45dp" />
+            android:layout_margin="45dp"
+            android:background="@color/accent"/>
 
     </LinearLayout>
 </ScrollView>

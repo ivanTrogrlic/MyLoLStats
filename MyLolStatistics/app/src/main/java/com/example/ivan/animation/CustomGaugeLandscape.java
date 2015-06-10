@@ -9,6 +9,8 @@ import android.graphics.RectF;
 import android.graphics.Shader;
 import android.view.View;
 
+import com.example.ivan.mylolstatistics.R;
+
 public class CustomGaugeLandscape extends View {
     public CustomGaugeLandscape(Context context) {
         super(context);
@@ -51,7 +53,7 @@ public class CustomGaugeLandscape extends View {
         float mRectTop;
         float mRectRight;
         float mRectBottom;
-        int mPointSize = 6;
+        int mPointSize = 0;
 
         canvas.rotate(180, getMeasuredWidth() / 2, getMeasuredHeight() / 2);
 
@@ -71,7 +73,7 @@ public class CustomGaugeLandscape extends View {
         mPaint.setShader(null);
         canvas.drawArc(mRect, mStartAngel, mSweepAngel, false, mPaint);
         mPaint.setColor(Color.WHITE);
-        mPaint.setShader(new LinearGradient(0, 0, getWidth(), getHeight()/2, Color.RED, Color.GREEN, Shader.TileMode.REPEAT));
+        mPaint.setShader(new LinearGradient(0, 0, getWidth(), getHeight() / 2, getResources().getColor(R.color.primary_dark), getResources().getColor(R.color.accent), Shader.TileMode.REPEAT));
         if (mPointSize>0) {
             if (mPoint > mStartAngel + mPointSize/2) {
                 canvas.drawArc(mRect, mPoint - mPointSize/2, mPointSize, false, mPaint);

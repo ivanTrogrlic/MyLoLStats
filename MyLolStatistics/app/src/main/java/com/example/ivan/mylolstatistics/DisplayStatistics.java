@@ -18,7 +18,7 @@ package com.example.ivan.mylolstatistics;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
-import android.support.v4.content.ContextCompat;
+import android.support.v4.content.res.ResourcesCompat;
 import android.view.ContextMenu;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -71,9 +71,13 @@ public class DisplayStatistics extends Fragment {
         for (int i = 0; i < game.size(); i++) {
 
             TableRow row = new TableRow(getActivity());
-            row.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT,
-                    TableRow.LayoutParams.MATCH_PARENT));
-            row.setBackground(ContextCompat.getDrawable(getActivity(), R.drawable.cell_shape_two));
+            TableLayout.LayoutParams tableRowParams = new TableLayout.LayoutParams(TableLayout.LayoutParams.MATCH_PARENT, TableLayout.LayoutParams.MATCH_PARENT);
+            final float scale = getResources().getDisplayMetrics().density;
+            int marginLeftRight = (int) (5 * scale + 0.5f);
+            int marginTopBottom = (int) (1 * scale + 0.5f);
+            tableRowParams.setMargins(marginLeftRight,marginTopBottom,marginLeftRight,marginTopBottom);
+            row.setLayoutParams(tableRowParams);
+            row.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.cell_shape_two, null));
 
             for (int j = 0; j < cols; j++) {
 

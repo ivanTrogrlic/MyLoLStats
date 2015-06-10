@@ -93,7 +93,6 @@ public class BestWinRate extends Fragment {
                         }
                     }
                     });
-                //thread.start();
         }}
         else{
             final CustomGaugeLandscape gauge = new CustomGaugeLandscape(getActivity());
@@ -130,7 +129,6 @@ public class BestWinRate extends Fragment {
                         }
                     }
                 });
-                //thread.start();
         }}
 
         return v;

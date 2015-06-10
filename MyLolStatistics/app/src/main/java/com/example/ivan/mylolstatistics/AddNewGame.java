@@ -16,7 +16,6 @@
 package com.example.ivan.mylolstatistics;
 
 import android.app.Fragment;
-import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -48,7 +47,6 @@ public class AddNewGame extends Fragment {
         assists = (EditText) v.findViewById(R.id.etAssists);
         gameOutcome = (Spinner) v.findViewById(R.id.spinnerGameOutcome);
         addNewGame = (Button) v.findViewById(R.id.bAddNewGame);
-        addNewGame.getBackground().setColorFilter(0xFF00FF01, PorterDuff.Mode.MULTIPLY);
 
         addNewGame.setOnClickListener(new View.OnClickListener() {
             @Override

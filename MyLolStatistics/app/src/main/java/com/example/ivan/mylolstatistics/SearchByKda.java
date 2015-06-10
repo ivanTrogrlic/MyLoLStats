@@ -17,7 +17,6 @@ package com.example.ivan.mylolstatistics;
 
 import android.app.Fragment;
 import android.graphics.Color;
-import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,6 +27,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
 import com.example.ivan.database.DatabaseStuff;
 
 import java.text.NumberFormat;
@@ -57,7 +57,6 @@ public class SearchByKda extends Fragment {
         procent = v.findViewById(R.id.vProcent);
         line = v.findViewById(R.id.line);
         procentHolder = (LinearLayout) v.findViewById(R.id.procentHolder);
-        checkKda.getBackground().setColorFilter(0xFF00FF01, PorterDuff.Mode.MULTIPLY);
 
         checkKda.setOnClickListener(new View.OnClickListener() {
             @Override
