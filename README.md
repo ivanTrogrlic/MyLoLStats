@@ -20,7 +20,7 @@ I'll still be working on it, perhaps use ContentProvider to add suggestions when
 
 ![ScreenShot](http://i62.tinypic.com/10idzi9.png)
 
-![ScreenShot](http://i60.tinypic.com/2mmb7l.png)
+![ScreenShot](http://i61.tinypic.com/2u9mijk.png)
 
 ![ScreenShot](http://i62.tinypic.com/11h9t9s.png)
 
