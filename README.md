@@ -28,6 +28,10 @@ I'll still be working on it, perhaps use ContentProvider to add suggestions when
 
 ![ScreenShot](http://i60.tinypic.com/20z8s4l.png)
 
+![ScreenShot](http://i61.tinypic.com/euiusg.png)
+
+![ScreenShot](http://i61.tinypic.com/x604nq.png)
+
 ![ScreenShot](http://i57.tinypic.com/t0ten5.png)
 
 ![ScreenShot](http://i61.tinypic.com/102k1nn.png)
