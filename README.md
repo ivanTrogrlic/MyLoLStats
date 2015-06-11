@@ -20,7 +20,7 @@ I'll still be working on it, perhaps use ContentProvider to add suggestions when
 
 ![ScreenShot](http://s15.postimg.org/hxdt7lgq3/delete_Update.png)
 
-![ScreenShot](http://s16.postimg.org/u3agkuuvp/addnew.png)
+![ScreenShot](http://i60.tinypic.com/2mmb7l.png)
 
 ![ScreenShot](http://s2.postimg.org/6qx896jx5/best_Kda.png)
 
