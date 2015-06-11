@@ -8,28 +8,28 @@ Also, users can see every game entered in a TableLayout, where they can delete o
 The app is built with fragments, one fragment is shown when device is in the portrait mode, and two are shown when its in the
 landscape mode. 
 
-UI is pretty bad, straightforward and boring since i didnt really focus on it. As I'm geting into Material design ill try to 
+UI is pretty straightforward and boring since i didnt really focus on it. As I'm geting into Material design ill try to 
 update it.
 
 The app is not 100% finished yet, but the Core of it is pretty much done.
 I'll still be working on it, perhaps use ContentProvider to add suggestions when searching for specific champion data, and Loaders to display table with only the desired champions, not all the entries from the database.
 
-![ScreenShot](http://s29.postimg.org/upjotgk93/Main_menu.png)
+![ScreenShot](http://i60.tinypic.com/2mmb7l.jpg)
 
-![ScreenShot](http://s8.postimg.org/oamjpm3k5/portrait.png)
+![ScreenShot](http://i62.tinypic.com/x4rg3q.png)
 
-![ScreenShot](http://s15.postimg.org/hxdt7lgq3/delete_Update.png)
+![ScreenShot](http://i62.tinypic.com/10idzi9.png)
 
 ![ScreenShot](http://i60.tinypic.com/2mmb7l.png)
 
-![ScreenShot](http://s2.postimg.org/6qx896jx5/best_Kda.png)
+![ScreenShot](http://i62.tinypic.com/11h9t9s.png)
 
-![ScreenShot](http://s17.postimg.org/4a60armrj/best_Win_Rate.png)
+![ScreenShot](http://i57.tinypic.com/qn4vir.png)
 
-![ScreenShot](http://s8.postimg.org/wvkguj345/best_Win_Rate2.png)
+![ScreenShot](http://i60.tinypic.com/20z8s4l.png)
 
-![ScreenShot](http://s17.postimg.org/gif38054v/check_Champion.png)
+![ScreenShot](http://i57.tinypic.com/t0ten5.png)
 
-![ScreenShot](http://s23.postimg.org/h8ymma5mz/check_Champion2.png)
+![ScreenShot](http://i61.tinypic.com/102k1nn.png)
 
 
