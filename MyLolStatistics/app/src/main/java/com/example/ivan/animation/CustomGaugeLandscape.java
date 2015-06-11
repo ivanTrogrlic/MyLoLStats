@@ -63,9 +63,9 @@ public class CustomGaugeLandscape extends View {
         float radius = (width > height ? width : height);
 
         mRectLeft = padding*2;
-        mRectTop = height - radius + padding*2 -100;
+        mRectTop = height - radius + padding*2 - 100;
         mRectRight = width;
-        mRectBottom = height - radius + padding + height;
+        mRectBottom = height - radius + padding*2 + height + 100;
 
         mRect.set(mRectLeft, mRectTop, mRectRight, mRectBottom);
 
