@@ -18,6 +18,7 @@ package com.example.ivan.mylolstatistics;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v4.content.res.ResourcesCompat;
 import android.view.ContextMenu;
 import android.view.Gravity;
@@ -44,6 +45,8 @@ public class DisplayStatistics extends Fragment {
     private TableLayout table_layout;
     private FrameLayout frame;
     Animation animation;
+    private View coordinatorLayoutView;
+    private boolean snackBarGone = false;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -52,6 +55,7 @@ public class DisplayStatistics extends Fragment {
         final DatabaseStuff db = new DatabaseStuff(getActivity());
 
         View v = inflater.inflate(R.layout.check_statistics, container, false);
+        coordinatorLayoutView = v.findViewById(R.id.snackbarPosition);
         frame = (FrameLayout) v.findViewById(R.id.selected_option_fragment);
         table_layout = (TableLayout) v.findViewById(R.id.main_table);
 
@@ -70,15 +74,14 @@ public class DisplayStatistics extends Fragment {
 
         for (int i = 0; i < game.size(); i++) {
 
-            TableRow row = new TableRow(getActivity());
+            final TableRow row = new TableRow(getActivity());
             TableLayout.LayoutParams tableRowParams = new TableLayout.LayoutParams(TableLayout.LayoutParams.MATCH_PARENT, TableLayout.LayoutParams.MATCH_PARENT);
             final float scale = getResources().getDisplayMetrics().density;
             int marginLeftRight = (int) (5 * scale + 0.5f);
             int marginTopBottom = (int) (1 * scale + 0.5f);
-            tableRowParams.setMargins(marginLeftRight,marginTopBottom,marginLeftRight,marginTopBottom);
+            tableRowParams.setMargins(marginLeftRight, marginTopBottom, marginLeftRight, marginTopBottom);
             row.setLayoutParams(tableRowParams);
-            row.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.cell_shape_two, null));
-
+            row.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.table_row_selector, null));
             for (int j = 0; j < cols; j++) {
 
                 TextView tv = new TextView(getActivity());
@@ -161,11 +164,45 @@ public class DisplayStatistics extends Fragment {
             TableRow t = (TableRow) row;
             TextView rowId = (TextView) t.getChildAt(6);
             final String id = rowId.getText().toString();
-            db.deleteGame(id);
 
-            Toast.makeText(getActivity(), "Deleted", Toast.LENGTH_SHORT).show();
+            final View.OnClickListener clickListener = new View.OnClickListener() {
+                public void onClick(View v) {
+                    db.deleteGame(id);
+                    row.startAnimation(animation);
+                }
+            };
 
-            row.startAnimation(animation);
+            final Snackbar snackbar = Snackbar.make(coordinatorLayoutView, R.string.delete_row, Snackbar.LENGTH_LONG);
+            snackbar.setAction(R.string.snackbar_action_undo, clickListener);
+            snackbar.show();
+
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                        try {
+                            getActivity().runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    row.setBackgroundResource(R.drawable.cell_shape_two_hover);
+                                }
+                            });
+                            Thread.sleep(3500);
+                        }catch (Exception e){
+                            e.printStackTrace();
+                        }
+                        try {
+                            getActivity().runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    row.setBackgroundResource(R.drawable.cell_shape_two);
+                                }
+                            });
+                        }catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                }
+
+            }).start();
 
             animation.setAnimationListener(new Animation.AnimationListener() {
                 @Override

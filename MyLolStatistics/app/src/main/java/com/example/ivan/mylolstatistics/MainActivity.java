@@ -15,19 +15,20 @@ import com.example.ivan.dialogs.DeleteEverythingDialog;
 public class MainActivity extends AppCompatActivity
         implements ListOfOptionsFragment.OnOptionSelected {
 
+    int orientation;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.listofoptions);
 
         Toolbar mToolbar = (Toolbar) findViewById(R.id.toolbar);
-
         setSupportActionBar(mToolbar);
-        if(getSupportActionBar() != null) {
+        if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayShowHomeEnabled(true);
         }
 
-        int orientation = getResources().getConfiguration().orientation;
+        orientation = getResources().getConfiguration().orientation;
 
         if (orientation == Configuration.ORIENTATION_PORTRAIT) {
 
@@ -43,12 +44,9 @@ public class MainActivity extends AppCompatActivity
 
     public void onSelectedJobSelected(int position) throws InstantiationException, IllegalAccessException {
 
-        //FrameLayout f = (FrameLayout) findViewById(R.id.selected_option_fragment);
-        int orientation = getResources().getConfiguration().orientation;
-
         if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
 
-            switch(position){
+            switch (position) {
                 case 0:
                     AddNewGame addNewGameFragment = new AddNewGame();
                     fragmentTransactionLandscape(addNewGameFragment);
@@ -71,9 +69,9 @@ public class MainActivity extends AppCompatActivity
                     break;
             }
 
-        }else{
+        } else {
 
-            switch(position){
+            switch (position) {
                 case 0:
                     AddNewGame addNewGameFragment = new AddNewGame();
                     fragmentTransactionPortrait(addNewGameFragment);
@@ -139,12 +137,11 @@ public class MainActivity extends AppCompatActivity
         }
         return super.onOptionsItemSelected(item);
 
-
     }
 
     @Override
     public void onBackPressed() {
-        if (getFragmentManager().getBackStackEntryCount() > 0 ){
+        if (getFragmentManager().getBackStackEntryCount() > 0) {
             getFragmentManager().popBackStack();
         } else {
             super.onBackPressed();

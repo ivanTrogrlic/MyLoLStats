@@ -33,7 +33,6 @@ public class CustomGaugeLandscape extends View {
         float mStrokeWidth = 50;
 
         mPaint = new Paint();
-        //mPaint.setColor(Color.BLUE);
         mPaint.setStrokeWidth(mStrokeWidth);
         mPaint.setAntiAlias(true);
         mPaint.setStrokeCap(Paint.Cap.ROUND);
@@ -58,14 +57,14 @@ public class CustomGaugeLandscape extends View {
         canvas.rotate(180, getMeasuredWidth() / 2, getMeasuredHeight() / 2);
 
         float padding = 20;
-        float width = getWidth() - (padding*2);
-        float height = getHeight() - (padding*2);
+        float width = getWidth() - (padding * 2);
+        float height = getHeight() - (padding * 2);
         float radius = (width > height ? width : height);
 
-        mRectLeft = padding*2;
-        mRectTop = height - radius + padding*2 - 100;
+        mRectLeft = padding * 2;
+        mRectTop = height - radius + padding * 2 - 100;
         mRectRight = width;
-        mRectBottom = height - radius + padding*2 + height + 100;
+        mRectBottom = height - radius + padding * 2 + height + 100;
 
         mRect.set(mRectLeft, mRectTop, mRectRight, mRectBottom);
 
@@ -74,16 +73,14 @@ public class CustomGaugeLandscape extends View {
         canvas.drawArc(mRect, mStartAngel, mSweepAngel, false, mPaint);
         mPaint.setColor(Color.WHITE);
         mPaint.setShader(new LinearGradient(0, 0, getWidth(), getHeight() / 2, getResources().getColor(R.color.primary_dark), getResources().getColor(R.color.accent), Shader.TileMode.REPEAT));
-        if (mPointSize>0) {
-            if (mPoint > mStartAngel + mPointSize/2) {
-                canvas.drawArc(mRect, mPoint - mPointSize/2, mPointSize, false, mPaint);
-            }
-            else {
+        if (mPointSize > 0) {
+            if (mPoint > mStartAngel + mPointSize / 2) {
+                canvas.drawArc(mRect, mPoint - mPointSize / 2, mPointSize, false, mPaint);
+            } else {
                 canvas.drawArc(mRect, mPoint, mPointSize, false, mPaint);
             }
-        }
-        else {
-            if (mValue==mStartValue)
+        } else {
+            if (mValue == mStartValue)
                 canvas.drawArc(mRect, mStartAngel, 1, false, mPaint);
             else
                 canvas.drawArc(mRect, mStartAngel, mPoint - mStartAngel, false, mPaint);
@@ -93,7 +90,7 @@ public class CustomGaugeLandscape extends View {
 
     public void setValue(int value) {
         mValue = value;
-        mPoint = (int) (mStartAngel + (mValue-mStartValue) * mPointAngel);
+        mPoint = (int) (mStartAngel + (mValue - mStartValue) * mPointAngel);
         invalidate();
     }
 

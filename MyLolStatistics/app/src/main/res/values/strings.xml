@@ -28,6 +28,8 @@
     <string name="check_kda">Check KDA / win rate</string>
     <string name="best_kda">Your champion with the highest KDA:</string>
     <string name="highest_win_rate">Your champion with the highest win rate:</string>
+    <string name="delete_row">About to delete this entery</string>
+    <string name="snackbar_action_undo">Delete</string>
 
 
 
