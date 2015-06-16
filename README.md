@@ -12,7 +12,6 @@ UI is pretty straightforward and boring since i didnt really focus on it. As I'm
 update it.
 
 The app is not 100% finished yet, but the Core of it is pretty much done.
-I'll still be working on it, perhaps use ContentProvider to add suggestions when searching for specific champion data, and Loaders to display table with only the desired champions, not all the entries from the database.
 
 ![ScreenShot](http://i60.tinypic.com/2mmb7l.jpg)
 
