@@ -30,7 +30,7 @@
     <string name="highest_win_rate">Your champion with the highest win rate:</string>
     <string name="delete_row">About to delete this entery</string>
     <string name="snackbar_action_undo">Delete</string>
-
-
+    <string name="champion_name">Enter champion name to filter the table:</string>
+    <string name="filter">Filter</string>
 
 </resources>

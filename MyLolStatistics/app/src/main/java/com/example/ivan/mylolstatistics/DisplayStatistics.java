@@ -1,23 +1,9 @@
-/*
- * Copyright (C) 2012 The Android Open Source Project
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
 package com.example.ivan.mylolstatistics;
 
 import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.content.res.ResourcesCompat;
 import android.view.ContextMenu;
@@ -35,29 +21,42 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.ivan.database.DatabaseStuff;
+import com.example.ivan.dialogs.SearchDialog;
 import com.example.ivan.entitet.GameStatistics;
 
 import java.text.NumberFormat;
 import java.util.List;
 
-public class DisplayStatistics extends Fragment {
+public class DisplayStatistics extends Fragment implements SearchDialog.NoticeDialogListener{
 
     private TableLayout table_layout;
     private FrameLayout frame;
     Animation animation;
     private View coordinatorLayoutView;
-    private boolean snackBarGone = false;
+    private DatabaseStuff db;
+    View tableRow;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
-        final DatabaseStuff db = new DatabaseStuff(getActivity());
+        db = new DatabaseStuff(getActivity());
 
         View v = inflater.inflate(R.layout.check_statistics, container, false);
+        FloatingActionButton fab = (FloatingActionButton) v.findViewById(R.id.fab);
+
         coordinatorLayoutView = v.findViewById(R.id.snackbarPosition);
         frame = (FrameLayout) v.findViewById(R.id.selected_option_fragment);
         table_layout = (TableLayout) v.findViewById(R.id.main_table);
+        tableRow= inflater.inflate(R.layout.table_row, container, false);
+
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                SearchDialog searchDialog = new SearchDialog();
+                searchDialog.setTargetFragment(DisplayStatistics.this, 0);
+                searchDialog.show(getFragmentManager(), "Search");
+            }
+        });
 
         final List<GameStatistics> gamesList = db.getAllStatistics();
 
@@ -82,12 +81,14 @@ public class DisplayStatistics extends Fragment {
             tableRowParams.setMargins(marginLeftRight, marginTopBottom, marginLeftRight, marginTopBottom);
             row.setLayoutParams(tableRowParams);
             row.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.table_row_selector, null));
+
             for (int j = 0; j < cols; j++) {
 
                 TextView tv = new TextView(getActivity());
                 tv.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT,
                         TableRow.LayoutParams.MATCH_PARENT));
                 tv.setPadding(5, 5, 5, 5);
+
                 switch (j){
                     case 0:
                         tv.setText(game.get(i).getChampionName());
@@ -283,6 +284,21 @@ public class DisplayStatistics extends Fragment {
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
+    }
+
+    @Override
+    public void onDialogPositiveClick(String champion) {
+
+        List<GameStatistics> gamesList;
+        if(!champion.equals("")) {
+            gamesList = db.getSpecificChampionStatistics(champion);
+        }else{
+            gamesList = db.getAllStatistics();
+        }
+        table_layout.removeAllViews();
+        table_layout.addView(tableRow);
+        buildTable(gamesList, 7);
+
     }
 
 }

@@ -297,4 +297,57 @@ public class DatabaseStuff extends SQLiteOpenHelper {
         return winRate;
     }
 
+    public List<GameStatistics> getSpecificChampionStatistics(String champion) {
+        List<GameStatistics> statistics = new ArrayList<>();
+
+        String query = "SELECT  * FROM " + TABLE_STATISTICS + " WHERE champion=?";
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(query, new String[]{champion});
+
+        GameStatistics game;
+        if (cursor.moveToFirst()) {
+            do {
+                game = new GameStatistics();
+                game.setId(Integer.parseInt(cursor.getString(0)));
+                game.setChampionName(cursor.getString(1));
+                game.setGameOutcome(cursor.getString(2));
+                game.setKills(Integer.parseInt(cursor.getString(3)));
+                game.setDeaths(Integer.parseInt(cursor.getString(4)));
+                game.setAssists(Integer.parseInt(cursor.getString(5)));
+                game.setKda(Double.parseDouble(cursor.getString(6)));
+
+                statistics.add(game);
+            } while (cursor.moveToNext());
+        }
+
+        db.close();
+        cursor.close();
+
+        return statistics;
+    }
+
+    public boolean ifChampionExists(String champion) {
+        boolean exists = false;
+
+        String query = "SELECT  * FROM " + TABLE_STATISTICS + " WHERE champion=?";
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(query, new String[]{champion});
+
+        if (cursor.moveToFirst()) {
+            do {
+                if(cursor.getString(1).equals(champion)){
+                    exists = true;
+                    break;
+                }
+            } while (cursor.moveToNext());
+        }
+
+        db.close();
+        cursor.close();
+
+        return exists;
+    }
+
 }

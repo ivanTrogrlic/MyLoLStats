@@ -1,91 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fab="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/snackbarPosition"
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
-<ScrollView
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
-    <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:stretchColumns="*"
-        android:id="@+id/main_table" android:layout_height="wrap_content" android:layout_width="match_parent"
-        >
+    android:layout_height="match_parent"
+    android:layout_alignParentBottom="true"
+    android:layout_centerHorizontal="true"
+    android:paddingTop="3dp">
 
-        <TableRow
-            android:id="@+id/prviRedIndexi"
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/top_table_row">
+
+        <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/main_table"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_marginTop="1dp"
-            android:layout_marginBottom="1dp">
+            android:stretchColumns="*">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/champion"
-                android:layout_column="0"
-                android:gravity="center_horizontal"
-                android:textColor="@color/black"
-                android:background="@drawable/cell_shape"/>
+            <include
+                android:id="@+id/header"
+                layout="@layout/table_row" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/game_outcome"
-                android:layout_column="1"
-                android:gravity="center_horizontal"
-                android:textColor="@color/black"
-                android:background="@drawable/cell_shape"/>
+        </TableLayout>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/kills"
-                android:layout_column="2"
-                android:gravity="center_horizontal"
-                android:textColor="@color/black"
-                android:background="@drawable/cell_shape"/>
+    </android.support.v4.widget.NestedScrollView>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/deaths"
-                android:layout_column="3"
-                android:gravity="center_horizontal"
-                android:textColor="@color/black"
-                android:background="@drawable/cell_shape"/>
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="16dp"
+        android:src="@drawable/ic_fab_search"
+        fab:fab_colorNormal="@color/accent"
+        fab:fab_colorPressed="@color/accent"
+        fab:fab_colorRipple="@color/accent"
+        fab:fab_shadow="true"
+        fab:fab_type="normal" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/assists"
-                android:layout_column="4"
-                android:gravity="center_horizontal"
-                android:textColor="@color/black"
-                android:background="@drawable/cell_shape"/>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/kda"
-                android:layout_column="5"
-                android:gravity="center_horizontal"
-                android:textColor="@color/black"
-                android:background="@drawable/cell_shape" />
-
-        </TableRow>
-
-    </TableLayout>
-
-</ScrollView>
-
-<android.support.design.widget.CoordinatorLayout
-android:layout_width="wrap_content"
-android:layout_height="wrap_content"
-android:layout_alignParentBottom="true"
-android:layout_centerHorizontal="true"
-android:id="@+id/snackbarPosition">
 </android.support.design.widget.CoordinatorLayout>
-
-</RelativeLayout>

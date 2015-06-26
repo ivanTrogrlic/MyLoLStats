@@ -39,4 +39,5 @@ dependencies {
     compile 'com.jakewharton:butterknife:6.1.0'
     compile 'com.cardiomood.android:android-widgets:0.1.1'
     compile 'com.android.support:design:22.2.0'
+    compile 'com.melnykov:floatingactionbutton:1.3.0'
 }
