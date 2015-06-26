@@ -17,7 +17,9 @@ The app is not 100% finished yet, but the Core of it is pretty much done.
 
 ![ScreenShot](http://i62.tinypic.com/x4rg3q.png)
 
-![ScreenShot](http://i62.tinypic.com/10idzi9.png)
+![ScreenShot](http://i58.tinypic.com/20gcojr.png)
+
+![ScreenShot](http://i62.tinypic.com/kcjivd.png)
 
 ![ScreenShot](http://i61.tinypic.com/2u9mijk.png)
 
