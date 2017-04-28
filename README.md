@@ -13,6 +13,8 @@ update it.
 
 The app is not 100% finished yet, but the Core of it is pretty much done.
 
+P.S. This was my first andorid app so don't mind the code :P
+
 ![ScreenShot](http://i60.tinypic.com/2mmb7l.jpg)
 
 ![ScreenShot](http://i62.tinypic.com/x4rg3q.png)
